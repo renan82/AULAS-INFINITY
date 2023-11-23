@@ -1,0 +1,253 @@
+class Carro:
+  def __init__(self, marca, ano, modelo, tem_4_portas):
+    self.marca = marca
+    self.ano = ano
+    self.modelo = modelo
+    self.tem_4_portas = tem_4_portas
+  
+carro1 = Carro("Ford", 2021, "KA", True)
+carro2 = Carro("Fiat", 2007, "Uno", False)
+carro3 = Carro(modelo="HB20", tem_4_portas=True, marca="Hyundai", ano=2023)
+
+if carro3.tem_4_portas == True:
+  print("Carro com 4 portas")
+
+
+marca = str(input("Digite a marca do carro: "))
+ano = int(input("Digite o ano do carro: "))
+modelo = str(input("Digite o modelo do carro: "))
+portas = bool(input("O carro tem 4 portas?:"))
+
+carro4 = Carro(marca=marca, modelo=modelo, ano=ano, tem_4_portas=portas)
+
+
+
+
+CRIE UMA CLASSE CHAMADA Televisao COM OS SEGUINTES ATRIBUTOS:
+marca (str)
+polegadas(int)
+smart (bool)
+preco (float)
+apps (list) (passa uma lista com todos os apps que vem na tv)
+
+INSTACIE 3 VARIÁVEIS COM ESSA CLASSE
+(da forma que você desejar, pode pedir ou não para o usuário os dados)
+
+
+
+
+CRIE UMA CLASSE CHAMADA Televisao COM OS SEGUINTES ATRIBUTOS:
+marca (str)
+polegadas(int)
+smart (bool)
+preco (float)
+apps (list) (passa uma lista com todos os apps que vem na tv)
+
+INSTACIE 3 VARIÁVEIS COM ESSA CLASSE
+(da forma que você desejar, pode pedir ou não para o usuário os dados)
+
+
+class Televisao:
+  def __init__(self, marca:str, polegadas:int, smart:bool, preco: float, apps: list):
+    self.marca = marca
+    self.polegadas = polegadas
+    self.smart = smart
+    self.preco = preco
+    self.apps = apps
+
+tv1 = Televisao(marca="LG", polegadas=50, smart=True, preco=2.149, apps=["Netflix, Youtube, Google"])
+
+
+
+CRIE UMA CLASS CHAMADA Jogo QUE TERÁ OS ATRIBUTOS:
+nome (str)
+ano_lancamento (int)
+genero (str)
+preco (float)
+estoque (bool)
+INSTACIE 2 VARIÁVEIS COM ESSA CLASSE, ONDE PELO MENOS UMA SERÁ PREENCHIDA PELA USUÁRIO
+DEPOIS MOSTRE NA TELA UMA MENSAGEM COM "tem no estoque" OU "não tem no estoque"
+SE O JOGO FOR MAIS QUE 300 REAIS MOSTRE NA TELA "ta caro ein quero nao" SE NÃO "ta no preço oia, vou querer"
+
+
+class Jogo:
+  def __init__(self, nome:str, ano: int, genero: str, preco:float, estoque:bool):
+    self.nome = nome
+    self.ano = ano
+    self.genero = genero
+    self.preco = preco
+    self.estoque = estoque
+
+jogo1 = Jogo(nome= "League of Legends", ano=2010, genero="MOBA", preco=0, estoque=True)
+
+if jogo1.estoque == True:
+  print(f"O jogo {jogo1.nome} tem em estoque")
+else:
+  print(f"O jogo {jogo1.nome} não tem em estoque")
+
+if jogo1.preco > 300:
+  print(f"O jogo {jogo1.nome} é muito caro, quero não")
+else:
+  print(f"O jogo {jogo1.nome} ta baratim, me dê papai")
+
+nome = str(input("Digite o nome do jogo: "))
+ano = int(input("Digite o ano do jogo: "))
+genero = str(input("Digite o gênero do jogo: "))
+preco = float(input("Digite o preço do jogo: "))
+estoque = bool(input("O jogo tem em estoque?: "))
+
+jogo2 = Jogo(nome=nome, ano=ano, genero=genero, preco=preco, estoque=estoque)
+
+
+if jogo2.estoque == True:
+  print(f"O jogo {jogo2.nome} tem em estoque")
+else:
+  print(f"O jogo {jogo2.nome} não tem em estoque")
+
+if jogo2.preco > 300:
+  print(f"O jogo {jogo2.nome} é muito caro, quero não")
+else:
+  print(f"O jogo {jogo2.nome} ta baratim, me dê papai")
+    
+
+
+
+class Carro:
+  def __init__(self, marca,modelo,ano ):
+    self.marca = marca
+    self.modelo = modelo
+    self.ano = ano
+    self.velocidade_atual = 0
+  def ligar(self):
+    return f"O {self.modelo} está ligado"
+  
+  def acelerar(self, velocidade):
+    self.velocidade_atual = self.velocidade_atual + velocidade
+    return self.velocidade_atual
+  
+
+  
+carro1 = Carro(marca="Hyundai", modelo="HB20", ano=2019)
+
+print(carro1.ligar())
+print(carro1.velocidade_atual)
+carro1.acelerar(30)
+carro1.acelerar(20)
+carro1.acelerar(50)
+print(carro1.velocidade_atual)
+
+
+
+
+
+
+
+class Carro:
+  def __init__(self, marca,modelo,ano ):
+    self.marca = marca
+    self.modelo = modelo
+    self.ano = ano
+    self.velocidade_atual = 0
+
+  def ligar(self):
+    return f"O {self.modelo} está ligado"
+
+  def acelerar(self, velocidade):
+    self.velocidade_atual = self.velocidade_atual + velocidade
+    return self.velocidade_atual
+  
+  def freiar(self):
+    if self.velocidade_atual <= 20:
+      self.velocidade_atual = 0
+    else:
+      self.velocidade_atual = self.velocidade_atual - 20
+    return self.velocidade_atual
+  
+  def desligar(self):
+    return f"O {self.modelo} está desligado"
+  
+
+  
+
+
+
+carro1 = Carro(marca="Hyundai", modelo="HB20", ano=2019)
+
+while True:
+  menu = int(input("""
+            1 - Ligar
+            2 - Acelerar
+            3 - Freiar
+            4 - Desligar
+            0 - Sair
+  """))
+  match menu:
+    case 1:
+      print(carro1.ligar())
+    case 2:
+      velocidade = int(input("Digite o quanto você quer acelerar: "))
+      carro1.acelerar(velocidade)
+    case 3:
+      carro1.freiar()
+    case 4:
+      carro1.desligar()
+    case 0:
+      break
+    case _:
+      print("Opção inválida")
+
+  print(f"Velocidade atual: {carro1.velocidade_atual}")
+
+
+
+
+CRIE UMA CLASSE CHAMADA Cachorro QUE TEM OS ATRIB:
+nome (str)
+raca (str)
+idade (int)
+cor (str)
+adestrado (bool)
+
+E OS MÉTODOS:
+comer() QUE RETORNA "O {nome do cachorro} está comendo"
+dormir() QUE RETORNA "O {nome do cachorro} está dormindo
+
+DEPOIS INSTACIA (CRIA) UMA VARIÁVEL COM ESSA CLASSE E USE OS DOIS MÉTODOS DA CLASSE
+  
+
+
+class Cachorro:
+  def __init__(self, nome, raca, idade, cor, adestrado):
+      self.nome = nome
+      self.raca = raca
+      self.idade = idade
+      self.cor = cor
+      self.adestrado = adestrado
+  def comer(self):
+     return f"O {self.nome} está comendo."
+  def dormir(self):
+     return f"O {self.nome} está dormindo."
+
+cachorrim = Cachorro(nome="Abelardo", raca="Vira lata", idade=2, cor="Sujo", adestrado=False)
+
+print(cachorrim.comer())
+print(cachorrim.dormir())
+
+    
+
+
+
+
+class Fatura:
+  def __init__(self, nome, preco, quantidade):
+    self.nome = nome
+    self.preco = preco
+    self.quantidade = quantidade
+  
+  def gerar_fatura(self):
+    valor_total = self.preco * self.quantidade
+    return valor_total
+
+fatura1 = Fatura(nome="Mouse", preco=25, quantidade=50)
+
+print(f"O valor total da fatura é: {fatura1.gerar_fatura()}")
