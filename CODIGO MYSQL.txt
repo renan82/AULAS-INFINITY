@@ -1,0 +1,21 @@
+CÓDIGO MYSQL
+PROGRAMA MYSQL Workbench
+
+create DATABASE escola;
+USE escola;
+
+create TABLE aluno(
+id_aluno INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(255) NOT NULL,
+idade INT);
+
+create TABLE cursos(
+id_curso int PRIMARY KEY AUTO_INCREMENT,
+nome_curso varchar(255),
+carga_horaria INT);
+
+create TABLE matriculas(
+id_matricula INT PRIMARY KEY AUTO_INCREMENT,
+id_aluno INT,
+id_curso INT,
+data_matricula 	DATE)
