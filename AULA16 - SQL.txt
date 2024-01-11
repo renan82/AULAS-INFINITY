@@ -1,0 +1,194 @@
+https://www.invertexto.com/515aula16python
+
+ABRIR MySQL WORKBENCH
+
+CREATE DATABASE revisao;
+USE revisao;
+CREATE TABLE aluno (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(255),
+    idade INT,
+    data_nasc DATE,
+    media DECIMAL 
+);
+
+CREATE TABLE curso(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(255),
+    descricao TEXT,
+    num_alunos INT
+);
+
+CREATE TABLE matricula(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    id_aluno INT,
+    id_curso INT,
+    FOREIGN KEY (id_aluno) REFERENCES aluno (id),
+    FOREIGN KEY (id_curso) REFERENCES curso (id)
+);
+
+DROP TABLE matricula;
+TRUNCATE TABLE curso;
+
+
+
+
+
+
+CREATE DATABASE aula16;
+USE aula16;
+CREATE TABLE alunos(
+	id INT AUTO_INCREMENT PRIMARY key,
+    nome VARCHAR(255),
+    idade INT
+);
+
+INSERT INTO
+	alunos (nome, idade)
+	VALUES
+		("João" , 25),
+		("Maria", 30);
+        
+        
+INSERT INTO 
+	alunos
+	VALUES
+		(DEFAULT, "José", 15);
+        
+
+SELECT nome FROM alunos WHERE idade > 28;
+
+
+
+
+
+
+CRIE UM BANCO CHAMADO locadora
+USE ESSE BANCO
+
+CRIE UMA TABELA CHAMADA filmes
+QUE TEM AS COLUNAS: id, nome, genero, duracao
+
+CRIE UMA TABELA CHAMADA series
+QUE TEM AS COLUNAS id, nome, genero, temporadas
+
+INSIRA 3 FILMES QUE VOCÊ QUISER E 3 SÉRIES
+
+FAÇA UMA PESQUISA PARA MOSTRAR APENAS OS FILMES QUE POSSUEM MAIS QUE 2 HORAS DE DURAÇÃO
+FAÇA OUTRA PESQUISA PARA MOSTRAR APENAS AS SÉRIES QUE POSSUEM MAIS DO QUE 5 TEMPORADAS
+
+
+CREATE DATABASE locadora;
+USE locadora;
+
+CREATE TABLE filmes (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    genero VARCHAR(45),
+    duracao INT
+);
+
+CREATE TABLE series (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    genero VARCHAR(45),
+    temporadas INT
+);
+
+INSERT INTO
+	filmes (nome, genero, duracao)
+    VALUES
+		("Harry potter", "Fantasia", 2),
+        ("Homem de Ferro", "Ação", 1),
+        ("Senhor dos aneis", "Fantasia",3);
+        
+INSERT INTO
+	series (nome, genero, temporadas)
+    VALUES
+		("Game of Thrones", "Fantasia", 8),
+        ("Dexter", "Drama", 7),
+        ("Prision Break", "Ação",5);
+        
+        
+SELECT nome FROM filmes WHERE duracao >= 2;
+SELECT nome FROM series WHERE temporadas > 5;
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE DATABASE locadora;
+USE locadora;
+
+CREATE TABLE filmes (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    genero VARCHAR(45),
+    duracao INT
+);
+
+CREATE TABLE series (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    genero VARCHAR(45),
+    temporadas INT
+);
+
+INSERT INTO
+	filmes (nome, genero, duracao)
+    VALUES
+		("Harry potter", "Fantasia", 2),
+        ("Homem de Ferro", "Ação", 1),
+        ("Senhor dos aneis", "Fantasia",3);
+        
+INSERT INTO
+	series (nome, genero, temporadas)
+    VALUES
+		("Game of Thrones", "Fantasia", 8),
+        ("Dexter", "Drama", 7),
+        ("Prision Break", "Ação",5);
+        
+        
+SELECT nome FROM filmes WHERE duracao >= 2;
+SELECT nome FROM series WHERE temporadas > 5;
+
+
+UPDATE filmes SET duracao = 2 WHERE id = 3;
+
+DELETE FROM series WHERE nome = "Dexter";
+
+SELECT * FROM series;
+SELECT * FROM filmes;
+
+
+ALTER TABLE filmes CHANGE COLUMN nome titulo VARCHAR(255);
+
+ALTER TABLE filmes ADD COLUMN ano_lancamento DATE;
+
+ALTER TABLE filmes DROP COLUMN duracao;
+
+
+
+
+
+
+
+constraints
+CREATE DATABASE escola;
+USE escola;
+
+CREATE TABLE alunos(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    cpf CHAR(14) UNIQUE NOT NULL,
+    idade INT,
+    CHECK (idade >=18),
+    nome VARCHAR(255) NOT NULL    
+);
