@@ -1,0 +1,102 @@
+USANDO FUNÇÕES
+import mysql.connector
+
+
+db_config = {
+    "host": "localhost",
+    "user": "root",
+    "password": "mysqladmin102030",
+    "database": "locadora"
+}
+
+def consultar_banco(consulta):
+    conexao = mysql.connector.connect(**db_config)
+    cursor = conexao.cursor()
+    cursor.execute(consulta)
+    lista = cursor.fetchall()
+    cursor.close()
+    conexao.close()
+    return lista
+
+def bulir_no_banco(consulta):
+    conexao = mysql.connector.connect(**db_config)
+    cursor = conexao.cursor()
+    cursor.execute(consulta)
+    conexao.commit()
+    cursor.close()
+    conexao.close()
+    print("Deu certo, ihuuuuu!")
+
+
+
+
+nome = str(input("Digite o nome do filme: "))
+genero = str(input("Digite o gênero do filme: "))
+ano = int(input("Digite o ano do filme: "))
+preco = float(input("Digite o preço do filme: "))
+
+consulta = f"""
+    INSERT INTO filmes (nome, genero, ano, preco)
+    VALUES
+        ("{nome}", "{genero}", {ano}, {preco})
+"""
+
+bulir_no_banco(consulta=consulta)
+
+
+todos_os_filmes = consultar_banco(consulta="SELECT * FROM filmes")
+filmes_pos_2005 = consultar_banco(consulta="SELECT * FROM filmes WHERE ano > 2005")
+
+
+
+
+
+
+
+
+CREATE DATABASE locadora;
+USE locadora;
+
+CREATE TABLE filmes(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    genero VARCHAR(50),
+    ano INT,
+    preco FLOAT
+);
+
+DROP TABLE filmes;
+
+CREATE TABLE clientes(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255),
+    endereco VARCHAR(50),
+    idade INT
+);
+
+CREATE TABLE aluguel (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT,
+    id_filme INT,
+    FOREIGN KEY (id_cliente) REFERENCES clientes (id),
+	FOREIGN KEY (id_filme) REFERENCES filmes (id)
+);
+
+INSERT INTO clientes (nome, endereco, idade) VALUES 
+	("João", "Rua logo ali, 10", 35),
+	("Maria", "Rua logo ali, 11", 18),
+	("José", "Rua logo ali, 12", 24),
+	("Pedro", "Rua logo ali, 13", 10),
+	("Ana", "Rua logo ali, 14", 51)
+;
+
+INSERT INTO filmes (nome, genero, ano, preco) VALUES 
+	("Senhor dos aneis A sociedade do Anel", "Fantasia", 2001, 5.50),
+	("Senhor dos aneis As duas torres", "Fantasia", 2002, 6),
+	("Senhor dos aneis O retorno do rei", "Fantasia", 2003, 6.50),
+	("Harry Potter E a Pedra Filosofal", "Aventura", 2004, 4),
+	("Harry Potter e a Camara Secreta", "Aventura", 2005, 4.50)
+;
+
+
+SELECT * FROM filmes;
