@@ -1,0 +1,120 @@
+https://www.invertexto.com/515aula18python
+
+CRIE UMA BANCO CHAMADO locadora
+USE ESSE BANCO
+CRIE UMA TABELA CHAMADA filme
+QUE TEM OS ATRIBUTOS: 
+id, nome, genero, ano, preço
+CRIE UMA TABELA CHAMADA cliente
+QUE TEM OS ATRIBUTOS:
+id, nome, idade, endereço
+INSIRA 10 FILMES E 5 CLIENTES COM OS DADOS QUE VOCÊS DESEJAREM
+CRIE UMA TABELA CHAMADA aluguel
+QUE TEM OS ATRIBUTOS:
+id, id_cliente, id_filme
+
+FAÇA COM QUE O cliente numero 1 ALUGUE OS FILMES 3 E 5
+O CLIENTE NÚMERO 2 ALUGUE OS FILMES 1,2,8
+O CLIENTE NÚMERO 5 ALUGUE OS FILMES 7,9,10
+
+EDITEM O
+NOME DO 4 FILME PARA "Nárnia",
+O GÊNERO DO 4 FILME PARA "Fantasia"
+O ANO PARA 2003
+O PREÇO PARA 4.50
+
+UPDATE filmes SET nome = "...", genero = "..." WHERE id = ...
+
+DELETEM O FILME 6
+
+SELECIONE TODOS OS FILMES
+SELECIONE OS FILMES CUJO ANO DE LANÇAMENTO FOI APÓS 2010
+SELECONE OS FILMES QUE CUSTAM MENOS DO QUE 5 REAIS O ALUGUEL 
+
+---------------
+
+BANCO DE DADOS INTERAGINDO COM O PYTHON
+
+
+
+
+
+import mysql.connector
+
+
+db_config = {
+    "host": "localhost",
+    "user": "root",
+    "password": "mysqladmin102030",
+    "database": "locadora"
+}
+
+conexao = mysql.connector.connect(**db_config)
+cursor = conexao.cursor()
+cursor.execute("SELECT * FROM filmes")
+lista_de_filmes = cursor.fetchall()
+cursor.close()
+conexao.close()
+
+for filme in lista_de_filmes:
+    print(filme)
+
+
+
+conexao = mysql.connector.connect(**db_config)
+cursor = conexao.cursor()
+cursor.execute("""
+    INSERT INTO filmes (nome, genero, ano, preco)
+    VALUES
+        ("As Branquelas", "Comédia", 2004, 4.50)
+""")
+conexao.commit()
+cursor.close()
+conexao.close()
+
+
+
+conexao = mysql.connector.connect(**db_config)
+cursor = conexao.cursor()
+cursor.execute("""
+    UPDATE filmes SET nome = "Nárnia", genero = "Fantasia"
+    WHERE id = 6
+""")
+conexao.commit()
+cursor.close()
+conexao.close()
+
+
+
+
+
+
+
+import mysql.connector
+
+
+db_config = {
+    "host": "localhost",
+    "user": "root",
+    "password": "mysqladmin102030",
+    "database": "locadora"
+}
+
+
+conexao = mysql.connector.connect(**db_config)
+cursor = conexao.cursor()
+
+nome = str(input("Digite o nome do filme: "))
+genero = str(input("Digite o gênero do filme: "))
+ano = int(input("Digite o ano do filme: "))
+preco = float(input("Digite o preço do filme: "))
+
+cursor.execute(f"""
+    INSERT INTO filmes (nome, genero, ano, preco)
+    VALUES
+        ("{nome}", "{genero}", {ano}, {preco})
+""")
+
+conexao.commit()
+cursor.close()
+conexao.close()
